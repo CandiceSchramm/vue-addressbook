@@ -1,5 +1,6 @@
 <template>
   <div class="contact-list">
+    <!-- on form submit, call the newContact method & prevent default -->
     <form @submit.prevent="addNewContact">
       <h4>New Contact:</h4>
       Contact Name: <br>
@@ -14,7 +15,6 @@
        <input type="checkbox" value='true' v-model="newContact.is_favorite">
       Add contact to your favorites?
       <br>
-      <!-- on submit, call the newContact method & prevent default -->
       <input type="submit" value="Submit" >
     </form>
     <ul>
@@ -49,7 +49,7 @@ export default {
       this.contacts = data.contacts
       console.log(this.contacts)
     },
-    // newContact method to add contact using data from req.body
+    // newContact method to add contact newContact data
     addNewContact () {
       ContactService.addContact(this.newContact)
     }
