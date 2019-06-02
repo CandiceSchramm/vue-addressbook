@@ -1,5 +1,22 @@
 <template>
   <div class="contact-list">
+    <!-- on form submit, call the newContact method & prevent default -->
+    <form @submit.prevent="addNewContact">
+      <h4>New Contact:</h4>
+      Contact Name: <br>
+      <input type="text" name="contact-name"  required="true" v-model="newContact.name">
+      <br>
+      Email: <br>
+      <input type="email" name="contact-email" v-model="newContact.email">
+      <br>
+      Telephone <br>
+      <input type ="tel" name="contact-phone" v-model="newContact.phone">
+      <br>
+       <input type="checkbox" value='true' v-model="newContact.is_favorite">
+      Add contact to your favorites?
+      <br>
+      <input type="submit" value="Submit" >
+    </form>
     <ul>
       <li v-for="contact in contacts" :key="contact.id" class="item">{{ contact.name }}</li>
     </ul>
@@ -13,7 +30,13 @@ export default {
   name: 'ContactList',
   data () {
     return {
-      contacts: []
+      contacts: [],
+      newContact: {
+        name: '',
+        email: '',
+        phone: '',
+        is_favorite: false
+      }
     }
   },
   beforeMount () {
@@ -24,6 +47,11 @@ export default {
       const { data } = await ContactService.getContacts()
 
       this.contacts = data.contacts
+      console.log(this.contacts)
+    },
+    // newContact method to add contact newContact data
+    addNewContact () {
+      ContactService.addContact(this.newContact)
     }
   }
 }
