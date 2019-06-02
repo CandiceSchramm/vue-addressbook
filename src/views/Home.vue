@@ -1,6 +1,5 @@
 <template>
   <div id="home">
-    <h1>MarketDial Address Book</h1>
     <ContactList />
   </div>
 </template>
