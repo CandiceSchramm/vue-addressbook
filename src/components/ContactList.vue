@@ -1,7 +1,7 @@
 <template>
   <div class="contact-list">
     <!-- on form submit, call the newContact method & prevent default -->
-    <div id="card">
+    <div class="card">
       <form @submit.prevent="addNewContact">
         <h4>New Contact:</h4>Contact Name:
         <br>
@@ -28,37 +28,37 @@
 </template>
 
 <script>
-import ContactService from "@/services/ContactService";
+import ContactService from '@/services/ContactService'
 
 export default {
-  name: "ContactList",
-  data() {
+  name: 'ContactList',
+  data () {
     return {
       contacts: [],
       newContact: {
-        name: "",
-        email: "",
-        phone: "",
+        name: '',
+        email: '',
+        phone: '',
         is_favorite: false
       }
-    };
+    }
   },
-  beforeMount() {
-    this.getContacts();
+  beforeMount () {
+    this.getContacts()
   },
   methods: {
-    async getContacts() {
-      const { data } = await ContactService.getContacts();
+    async getContacts () {
+      const { data } = await ContactService.getContacts()
 
-      this.contacts = data.contacts;
-      console.log(this.contacts);
+      this.contacts = data.contacts
+      console.log(this.contacts)
     },
     // newContact method to add contact newContact data
-    addNewContact() {
-      ContactService.addContact(this.newContact);
+    addNewContact () {
+      ContactService.addContact(this.newContact)
     }
   }
-};
+}
 </script>
 
 <style scoped lang="sass">
