@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <h2>Virtual Rolodex</h2>
     <ContactList />
   </div>
 </template>
